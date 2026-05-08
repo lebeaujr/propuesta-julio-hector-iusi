@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propuesta Julio Héctor: dashboards y base técnica</title>
+  <style>
+    :root {
+      --bg: #f7f1e7;
+      --panel: rgba(255,255,255,0.88);
+      --ink: #26343b;
+      --muted: #667680;
+      --teal: #1d6a67;
+      --gold: #b8782a;
+      --line: #dbc8ac;
+      --shadow: 0 16px 34px rgba(71, 51, 16, 0.12);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(20,121,121,0.14), transparent 32%),
+        radial-gradient(circle at top right, rgba(184,120,42,0.16), transparent 28%),
+        var(--bg);
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #184f57, #7d5322);
+      color: #fff;
+      border-radius: 32px;
+      padding: 32px 34px;
+      box-shadow: var(--shadow);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      line-height: 1.03;
+    }
+    .hero p {
+      margin: 0;
+      max-width: 980px;
+      line-height: 1.6;
+      font-size: 1.03rem;
+      color: rgba(255,255,255,0.92);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 22px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(219, 200, 172, 0.95);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .panel h2, .panel h3 {
+      margin-top: 0;
+    }
+    .small {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: var(--teal);
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 700;
+    }
+    .btn.alt { background: var(--gold); }
+    ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      line-height: 1.7;
+    }
+    code {
+      background: rgba(37,51,58,0.06);
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
+    @media (max-width: 880px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { padding: 18px; }
+      .hero { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Propuesta Julio Héctor</h1>
+      <p>
+        Repositorio público para explorar dos visualizaciones complementarias sobre la propuesta de reforma
+        tributaria inmobiliaria asociada al IUSI: un tablero general de impactos de la propuesta y un radar
+        municipal de intensidad inmobiliaria formal para aproximar la compensación territorial por IVA inmobiliario.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>Dashboard 1: impactos de la propuesta</h2>
+        <p class="small">
+          Resume los puntos centrales de la propuesta, sus efectos fiscales directos sobre el IUSI,
+          la compensación municipal aproximada, el impacto social por perfiles y los incentivos de mercado.
+        </p>
+        <div class="actions">
+          <a class="btn" href="dashboards/julio_hector_dashboard.html">Abrir dashboard</a>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Dashboard 2: radar proxy municipal</h2>
+        <p class="small">
+          Permite comparar municipios con telarañas de cuatro bloques: urbanidad y centralidad, mercado inmobiliario formal,
+          finanzas y formalidad, y capacidad institucional/catastral. Incluye un resumen fiscal proxy del IUSI actual y con reforma.
+        </p>
+        <div class="actions">
+          <a class="btn alt" href="dashboards/jh_proxy_municipal_radar.html">Abrir radar municipal</a>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Documentos principales</h3>
+        <ul>
+          <li><a href="docs/nota_tecnica_detallada_julio_hector.md">Nota técnica detallada</a></li>
+          <li><a href="docs/nota_tecnica_legisladores_julio_hector.md">Nota técnica para legisladores</a></li>
+          <li><a href="docs/nota_comunicacional_julio_hector.md">Nota comunicacional</a></li>
+          <li><a href="docs/nota_tecnica_matriz_proxy_iva_inmobiliario.md">Nota técnica de la matriz proxy</a></li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Datos y reproducibilidad</h3>
+        <p class="small">
+          El repositorio incluye los archivos de salida y los scripts mínimos para reconstruir ambas piezas.
+          La carpeta <code>data/</code> contiene las tablas usadas por los dashboards y <code>scripts/</code>
+          contiene los generadores de las visualizaciones.
+        </p>
+        <ul>
+          <li><code>data/jh_f2_proxy_matrix_municipal.csv</code></li>
+          <li><code>data/jh_f1_iusi_direct_scenarios.csv</code></li>
+          <li><code>data/jh_f2b_iva_compensation_proxy_scenarios.csv</code></li>
+          <li><code>data/jh_s1_social_profiles.csv</code></li>
+          <li><code>data/jh_m1_market_incentives.csv</code></li>
+        </ul>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
